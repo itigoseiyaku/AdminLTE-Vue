@@ -1,14 +1,20 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
+import FirstView from "../views/FirstView.vue";
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
     path: "/",
+    name: "FirstView",
+    component: FirstView,
+  },
+  {
+    path: "/home",
     name: "Home",
-    component: Home
+    component: Home,
   },
   {
     path: "/about",
@@ -17,14 +23,14 @@ const routes: Array<RouteConfig> = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
-  }
+      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+  },
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 export default router;
