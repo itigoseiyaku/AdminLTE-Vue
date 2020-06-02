@@ -2,7 +2,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/" class="brand-link">
+    <a @click="rootChange('FirstView')" class="brand-link">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
 
@@ -12,7 +12,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
           <li class="nav-item">
-            <a href="/" class="nav-link">
+            <a @click="rootChange('FirstView')" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Main Page
@@ -32,13 +32,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="home" class="nav-link active">
+                <a @click="rootChange('Home')" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Home</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="about" class="nav-link">
+                <a @click="rootChange('About')" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>About</p>
                 </a>
@@ -55,7 +55,15 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import router from "@/router";
 
 @Component
-export default class SideMenu extends Vue {}
+export default class SideMenu extends Vue {
+  // 画面遷移を行う
+  rootChange(pageName: string) {
+    if (pageName && this.$route.name !== pageName) {
+      router.push({ name: pageName });
+    }
+  }
+}
 </script>
